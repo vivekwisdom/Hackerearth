@@ -3,35 +3,72 @@
  */
 package vw.hackerearth.practice;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.Closeable;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
 /**
  * @author vivek.wisdom
  *
  */
-public class LifeUniverseEverything {
+public class LifeUniverseEverything implements Closeable {
+	private InputReader in = new InputReader(System.in);
+	private PrintWriter out = new PrintWriter(new BufferedOutputStream(System.out));
 
-	/**
-	 * @param args
-	 * @throws IOException
-	 */
-	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	static StringTokenizer st;
-
-	public static void main(String[] args) throws IOException {
-
+	public void solve() {
 		int next;
-		while ((next = getInt()) != 42) {
-			System.out.println(next);
+		while ((next = in.nextInt()) != 42) {
+			out.println(next);
 		}
 	}
 
-	private static int getInt() throws IOException {
-		st = new StringTokenizer(br.readLine());
-		return (Integer.parseInt(st.nextToken()));
+	@Override
+	public void close() throws IOException {
+		in.close();
+		out.close();
 	}
 
+	static class InputReader {
+		public BufferedReader reader;
+		public StringTokenizer tokenizer;
+
+		public InputReader(InputStream stream) {
+			reader = new BufferedReader(new InputStreamReader(stream), 32768);
+			tokenizer = null;
+		}
+
+		public String next() {
+			while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+				try {
+					tokenizer = new StringTokenizer(reader.readLine());
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+			}
+			return tokenizer.nextToken();
+		}
+
+		public int nextInt() {
+			return Integer.parseInt(next());
+		}
+
+		public long nextLong() {
+			return Long.parseLong(next());
+		}
+
+		public void close() throws IOException {
+			reader.close();
+		}
+	}
+
+	public static void main(String[] args) throws IOException {
+		try (LifeUniverseEverything instance = new LifeUniverseEverything()) {
+			instance.solve();
+		}
+	}
 }
