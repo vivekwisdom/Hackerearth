@@ -50,15 +50,20 @@ public class ShareMarket {
 				int sum = cost[j];
 				int count = atuse[j];
 				int asum = 0;
-				for (int m = 0; m <= n - count; m++) {
-					for (int l = 1; l < count; l++) {
-						if (antiques[m + j] == sum) {
-							System.out.println(antiques[m + l]);
+				String result = "";
+				
+				for (int l = 0; l < n; l++) {
+					for (int m = l; m < n; m++) {
+						asum = antiques[l] + antiques[m];
+						if (asum == sum) {
+							result = "Yes";
+						} else {
+							result = "No";
 						}
-						System.out.println(antiques[m + l]);
 					}
 				}
-				// System.out.println(asum);
+				System.out.println(result);
+
 			}
 
 		}
