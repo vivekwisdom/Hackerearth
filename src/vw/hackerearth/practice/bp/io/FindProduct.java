@@ -1,7 +1,7 @@
 /**
  * 
  */
-package vw.hackerearth.practice;
+package vw.hackerearth.practice.bp.io;
 
 /**
  * @author vivek
@@ -17,27 +17,19 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
-/**
- * @author vivek.wisdom
- *
- */
-public class ToggleString implements Closeable {
+public class FindProduct implements Closeable {
 	private InputReader in = new InputReader(System.in);
 	private PrintWriter out = new PrintWriter(new BufferedOutputStream(System.out));
 
-	/*
-	 * The main problem solution method.
-	 */
 	public void solve() {
-		char[] str = in.next().toCharArray();
-		for (int i = 0; i < str.length; i++) {
-			if (str[i] <= 90 && str[i] >= 65) {
-				str[i] = (char) (str[i] + 32);
-			} else {
-				str[i] = (char) (str[i] - 32);
-			}
-			out.print(str[i] + "");
+		int testCases = in.nextInt();
+		int[] arr = in.nextIntArray(testCases);
+		long answer = 1;
+		final int MOD = 1000000007;
+		for (int i = 0; i < arr.length; i++) {
+			answer = (answer * arr[i]) % MOD;
 		}
+		out.println(answer);
 	}
 
 	@Override
@@ -66,6 +58,14 @@ public class ToggleString implements Closeable {
 			return tokenizer.nextToken();
 		}
 
+		public int[] nextIntArray(int testCases) {
+			int[] arr = new int[testCases];
+			for (int i = 0; i < arr.length; i++) {
+				arr[i] = Integer.parseInt(next());
+			}
+			return arr;
+		}
+
 		public int nextInt() {
 			return Integer.parseInt(next());
 		}
@@ -80,10 +80,8 @@ public class ToggleString implements Closeable {
 	}
 
 	public static void main(String[] args) throws IOException {
-		try (ToggleString instance = new ToggleString()) {
-//			long s = System.currentTimeMillis();
+		try (FindProduct instance = new FindProduct()) {
 			instance.solve();
-//			System.out.println(System.currentTimeMillis() - s + "ms");
 		}
 	}
 }

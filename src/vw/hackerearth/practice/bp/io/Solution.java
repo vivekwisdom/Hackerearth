@@ -1,7 +1,7 @@
 /**
  * 
  */
-package vw.hackerearth.practice;
+package vw.hackerearth.practice.bp.io;
 
 /**
  * @author vivek
@@ -17,18 +17,12 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
-public class CountDivisors implements Closeable {
+public class Solution implements Closeable {
 	private InputReader in = new InputReader(System.in);
 	private PrintWriter out = new PrintWriter(new BufferedOutputStream(System.out));
 
 	public void solve() {
-		int l = in.nextInt(), r = in.nextInt(), k = in.nextInt(), count = 0;
-		for (int i = l; i <= r; i++) {
-			if (i % k == 0) {
-				count++;
-			}
-		}
-		out.println(count);
+		out.println("Write your Code here...!!");
 	}
 
 	@Override
@@ -71,7 +65,7 @@ public class CountDivisors implements Closeable {
 	}
 
 	public static void main(String[] args) throws IOException {
-		try (CountDivisors instance = new CountDivisors()) {
+		try (Solution instance = new Solution()) {
 			instance.solve();
 		}
 	}

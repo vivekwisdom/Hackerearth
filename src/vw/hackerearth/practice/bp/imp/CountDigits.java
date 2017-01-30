@@ -1,7 +1,12 @@
 /**
  * 
  */
-package vw.hackerearth.practice;
+package vw.hackerearth.practice.bp.imp;
+
+/**
+ * @author vivek
+ *
+ */
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -12,18 +17,19 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
-/**
- * @author vivek.wisdom
- *
- */
-public class LifeUniverseEverything implements Closeable {
+public class CountDigits implements Closeable {
 	private InputReader in = new InputReader(System.in);
 	private PrintWriter out = new PrintWriter(new BufferedOutputStream(System.out));
 
 	public void solve() {
-		int next;
-		while ((next = in.nextInt()) != 42) {
-			out.println(next);
+		char[] s = in.next().toCharArray();
+		int[] arr = new int[10];
+		for (int i = 0; i < s.length; i++) {
+			arr[s[i] - 48] += 1;
+		}
+
+		for (int i = 0; i < arr.length; i++) {
+			out.println(i + " " + arr[i]);
 		}
 	}
 
@@ -67,7 +73,7 @@ public class LifeUniverseEverything implements Closeable {
 	}
 
 	public static void main(String[] args) throws IOException {
-		try (LifeUniverseEverything instance = new LifeUniverseEverything()) {
+		try (CountDigits instance = new CountDigits()) {
 			instance.solve();
 		}
 	}

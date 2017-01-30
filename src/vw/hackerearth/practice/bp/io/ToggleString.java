@@ -1,7 +1,7 @@
 /**
  * 
  */
-package vw.hackerearth.practice;
+package vw.hackerearth.practice.bp.io;
 
 /**
  * @author vivek
@@ -17,26 +17,27 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
-public class PalindromicString implements Closeable {
+/**
+ * @author vivek.wisdom
+ *
+ */
+public class ToggleString implements Closeable {
 	private InputReader in = new InputReader(System.in);
 	private PrintWriter out = new PrintWriter(new BufferedOutputStream(System.out));
 
+	/*
+	 * The main problem solution method.
+	 */
 	public void solve() {
-		String str = in.next();
-		out.println(isPalindrome(str) ? "YES" : "NO");
-	}
-
-	private boolean isPalindrome(String str) {
-		int start = 0;
-		int end = str.length() - 1;
-		while (end > start) {
-			if (str.charAt(end) != str.charAt(start)) {
-				return false;
+		char[] str = in.next().toCharArray();
+		for (int i = 0; i < str.length; i++) {
+			if (str[i] <= 90 && str[i] >= 65) {
+				str[i] = (char) (str[i] + 32);
+			} else {
+				str[i] = (char) (str[i] - 32);
 			}
-			++start;
-			--end;
+			out.print(str[i] + "");
 		}
-		return true;
 	}
 
 	@Override
@@ -79,8 +80,10 @@ public class PalindromicString implements Closeable {
 	}
 
 	public static void main(String[] args) throws IOException {
-		try (PalindromicString instance = new PalindromicString()) {
+		try (ToggleString instance = new ToggleString()) {
+//			long s = System.currentTimeMillis();
 			instance.solve();
+//			System.out.println(System.currentTimeMillis() - s + "ms");
 		}
 	}
 }

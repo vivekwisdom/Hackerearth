@@ -1,7 +1,7 @@
 /**
  * 
  */
-package vw.hackerearth.practice;
+package vw.hackerearth.practice.bp.io;
 
 /**
  * @author vivek
@@ -17,12 +17,27 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
-public class Solution implements Closeable {
+public class RoyAndProfilePicture implements Closeable {
 	private InputReader in = new InputReader(System.in);
 	private PrintWriter out = new PrintWriter(new BufferedOutputStream(System.out));
 
 	public void solve() {
-		out.println("Write your Code here...!!");
+		int l = in.nextInt();
+		int n = in.nextInt();
+		for (int i = 0; i < n; i++) {
+			int w = in.nextInt();
+			int h = in.nextInt();
+
+			if (w >= l && h >= l) {
+				if (w == h) {
+					out.println("ACCEPTED");
+				} else {
+					out.println("CROP IT");
+				}
+			} else {
+				out.println("UPLOAD ANOTHER");
+			}
+		}
 	}
 
 	@Override
@@ -65,7 +80,7 @@ public class Solution implements Closeable {
 	}
 
 	public static void main(String[] args) throws IOException {
-		try (Solution instance = new Solution()) {
+		try (RoyAndProfilePicture instance = new RoyAndProfilePicture()) {
 			instance.solve();
 		}
 	}

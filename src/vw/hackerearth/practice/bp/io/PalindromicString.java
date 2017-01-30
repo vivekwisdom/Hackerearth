@@ -1,7 +1,7 @@
 /**
  * 
  */
-package vw.hackerearth.practice;
+package vw.hackerearth.practice.bp.io;
 
 /**
  * @author vivek
@@ -17,27 +17,26 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
-public class RoyAndProfilePicture implements Closeable {
+public class PalindromicString implements Closeable {
 	private InputReader in = new InputReader(System.in);
 	private PrintWriter out = new PrintWriter(new BufferedOutputStream(System.out));
 
 	public void solve() {
-		int l = in.nextInt();
-		int n = in.nextInt();
-		for (int i = 0; i < n; i++) {
-			int w = in.nextInt();
-			int h = in.nextInt();
+		String str = in.next();
+		out.println(isPalindrome(str) ? "YES" : "NO");
+	}
 
-			if (w >= l && h >= l) {
-				if (w == h) {
-					out.println("ACCEPTED");
-				} else {
-					out.println("CROP IT");
-				}
-			} else {
-				out.println("UPLOAD ANOTHER");
+	private boolean isPalindrome(String str) {
+		int start = 0;
+		int end = str.length() - 1;
+		while (end > start) {
+			if (str.charAt(end) != str.charAt(start)) {
+				return false;
 			}
+			++start;
+			--end;
 		}
+		return true;
 	}
 
 	@Override
@@ -80,7 +79,7 @@ public class RoyAndProfilePicture implements Closeable {
 	}
 
 	public static void main(String[] args) throws IOException {
-		try (RoyAndProfilePicture instance = new RoyAndProfilePicture()) {
+		try (PalindromicString instance = new PalindromicString()) {
 			instance.solve();
 		}
 	}

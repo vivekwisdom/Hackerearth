@@ -1,7 +1,7 @@
 /**
  * 
  */
-package vw.hackerearth.practice;
+package vw.hackerearth.practice.bp.imp;
 
 /**
  * @author vivek
@@ -17,17 +17,30 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
-public class Factorial implements Closeable {
+public class JarvisAndSevenSegments implements Closeable {
 	private InputReader in = new InputReader(System.in);
 	private PrintWriter out = new PrintWriter(new BufferedOutputStream(System.out));
 
 	public void solve() {
-		int n = in.nextInt();
-		int sum = 1;
-		for (int i = 1; i <= n; i++) {
-			sum *= i;
+		int testCases = in.nextInt();
+		int[] arr = { 6, 2, 5, 5, 4, 5, 6, 3, 7, 6 };
+		for (int i = 0; i < testCases; i++) {
+			int n = in.nextInt();
+			int min = 9999999;
+			String ans = "";
+			for (int j = 0; j < n; j++) {
+				String m = in.next();
+				int count = 0;
+				for (int k = 0; k < m.length(); k++) {
+					count = count + (arr[m.charAt(k) - 48]);
+				}
+				if (count < min) {
+					min = count;
+					ans = m;
+				}
+			}
+			out.println(ans);
 		}
-		out.println(sum);
 	}
 
 	@Override
@@ -70,7 +83,7 @@ public class Factorial implements Closeable {
 	}
 
 	public static void main(String[] args) throws IOException {
-		try (Factorial instance = new Factorial()) {
+		try (JarvisAndSevenSegments instance = new JarvisAndSevenSegments()) {
 			instance.solve();
 		}
 	}

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package vw.hackerearth.practice;
+package vw.hackerearth.practice.bp.io;
 
 /**
  * @author vivek
@@ -17,19 +17,18 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
-public class FindProduct implements Closeable {
+public class CountDivisors implements Closeable {
 	private InputReader in = new InputReader(System.in);
 	private PrintWriter out = new PrintWriter(new BufferedOutputStream(System.out));
 
 	public void solve() {
-		int testCases = in.nextInt();
-		int[] arr = in.nextIntArray(testCases);
-		long answer = 1;
-		final int MOD = 1000000007;
-		for (int i = 0; i < arr.length; i++) {
-			answer = (answer * arr[i]) % MOD;
+		int l = in.nextInt(), r = in.nextInt(), k = in.nextInt(), count = 0;
+		for (int i = l; i <= r; i++) {
+			if (i % k == 0) {
+				count++;
+			}
 		}
-		out.println(answer);
+		out.println(count);
 	}
 
 	@Override
@@ -58,14 +57,6 @@ public class FindProduct implements Closeable {
 			return tokenizer.nextToken();
 		}
 
-		public int[] nextIntArray(int testCases) {
-			int[] arr = new int[testCases];
-			for (int i = 0; i < arr.length; i++) {
-				arr[i] = Integer.parseInt(next());
-			}
-			return arr;
-		}
-
 		public int nextInt() {
 			return Integer.parseInt(next());
 		}
@@ -80,7 +71,7 @@ public class FindProduct implements Closeable {
 	}
 
 	public static void main(String[] args) throws IOException {
-		try (FindProduct instance = new FindProduct()) {
+		try (CountDivisors instance = new CountDivisors()) {
 			instance.solve();
 		}
 	}
