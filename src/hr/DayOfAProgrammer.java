@@ -23,20 +23,41 @@ public class DayOfAProgrammer implements Closeable {
 
 	public void solve() {
 		int y = in.nextInt();
-		boolean leap = leapYear(y);
+		final int PDAY = 256;
+
 		int[] arr = { 31, 30, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
 		if (y == 1918) {
 			int days = 32;
 			if (leapYear(y)) {
 				days += 15;
+			} else {
+				days += 14;
 			}
-		} else if (y <= 1917) {
-			// julian
-		} else if (y > 1917 && y <= 2700) {
-			// gregorian calendar
+			days += (arr[2] + arr[3] + arr[4] + arr[5] + arr[6] + arr[7]);
+			int day = PDAY - days;
+			String month = "09";
+			out.println(day + "." + month + "." + y);
+		} else {
+			int days = 0;
+			int i = 0;
+			for (; days < PDAY; i++) {
+				if ((days + arr[i]) < PDAY) {
+					days = days + arr[i];
+				} else {
+					break;
+				}
+			}
+			if (leapYear(y)) {
+				days = days - 1;
+			} else {
+				days = days - 2;
+			}
+			int day = PDAY - days;
+			int month = i + 1;
+			String months = month < 10 ? "0" + month : Integer.toString(month);
+			out.println(day + "." + months + "." + y);
 		}
-
 	}
 
 	private boolean leapYear(int y) {
